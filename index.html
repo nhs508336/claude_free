@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>초월읍 주민 협의 플랫폼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--green:#123D32;--green2:#1d5c4a;--gold:#D6A646;--ivory:#F6F1E6;--ink:#123D32;--mute:#5d7068;--line:rgba(18,61,50,.15);--card:#fff;--ok:#2f7d4f;--err:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:"Nanum Gothic","Malgun Gothic",sans-serif;background:var(--ivory);color:var(--ink);line-height:1.65}
+[hidden]{display:none!important}
+button,input,textarea,select{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:50;background:rgba(18,61,50,.97);backdrop-filter:blur(12px)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;flex-wrap:wrap}
+.logo{color:var(--ivory);font-weight:800;letter-spacing:-.03em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--gold);display:grid;place-items:center;color:var(--green);font-style:normal}
+.menu{display:flex;gap:4px;flex-wrap:wrap}
+.menu a{color:rgba(246,241,230,.8);text-decoration:none;font-size:14px;padding:7px 13px;border-radius:99px}
+.menu a:hover,.menu a.on{background:var(--gold);color:var(--green)}
+.user{display:flex;align-items:center;gap:8px;color:var(--ivory);font-size:13px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 16px;border-radius:11px;cursor:pointer;font-weight:800;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.p{background:var(--gold);border-color:var(--gold);color:var(--green)}
+.btn.s{background:var(--green);border-color:var(--green);color:var(--ivory)}
+.btn.g{background:transparent;border-color:rgba(246,241,230,.4);color:var(--ivory)}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green),var(--green2));color:var(--ivory);padding:88px 0 76px;isolation:isolate}
+.hero .grid{position:absolute;inset:-50%;z-index:-1;background-image:linear-gradient(rgba(246,241,230,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(246,241,230,.07) 1px,transparent 1px);background-size:48px 48px;transform:perspective(700px) rotateX(58deg);animation:gm 6s linear infinite}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);z-index:-1}
+.b1{width:400px;height:400px;background:var(--gold);opacity:.35;top:-120px;right:-60px;animation:f1 15s ease-in-out infinite}
+.b2{width:340px;height:340px;background:#3f9d7f;opacity:.5;left:-90px;bottom:-130px;animation:f2 18s ease-in-out infinite}
+@keyframes gm{to{background-position:0 48px}}
+@keyframes f1{50%{transform:translate(-180px,100px) scale(1.15)}}
+@keyframes f2{50%{transform:translate(200px,-70px) scale(.9)}}
+@media(prefers-reduced-motion:reduce){.hero *{animation:none!important}}
+.tag{display:inline-block;background:var(--gold);color:var(--green);font-weight:800;font-size:12px;letter-spacing:.06em;padding:5px 12px;border-radius:99px;margin-bottom:16px}
+.hero h1{font-size:clamp(30px,5.5vw,54px);line-height:1.22;letter-spacing:-.045em;margin-bottom:14px}
+.hero h1 b{color:var(--gold)}
+.hero p{max-width:580px;font-size:17px;opacity:.92;margin-bottom:26px}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:34px}
+.stat{background:rgba(246,241,230,.1);border-radius:14px;padding:14px 16px}
+.stat small{display:block;opacity:.8;font-size:13px}.stat strong{font-size:30px;color:var(--gold)}
+section.s{padding:48px 0}
+h2{font-size:clamp(22px,3vw,30px);letter-spacing:-.04em;margin-bottom:6px}
+.sub{color:var(--mute);font-size:14px;margin-bottom:20px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.num{width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--gold);display:grid;place-items:center;font-weight:800;margin-bottom:10px}
+.card h3{margin-bottom:6px;font-size:18px}.card p{font-size:14px;color:var(--mute)}
+.note{background:rgba(214,166,70,.18);border-left:4px solid var(--gold);border-radius:10px;padding:12px 15px;font-size:14px;margin-top:16px}
+.page{padding:34px 0 64px;min-height:70vh}
+.bh{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;cursor:pointer;font-size:14px}
+.tabs button.on{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ac{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;transition:transform .2s,border-color .2s}
+.ac:hover{transform:translateY(-3px);border-color:var(--gold)}
+.ac h3{font-size:17px;margin:8px 0 6px;line-height:1.4}
+.ac p{font-size:13px;color:var(--mute);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chip{display:inline-block;font-size:12px;font-weight:800;padding:2px 10px;border-radius:99px;margin-right:6px;background:var(--line)}
+.s-proposed{background:var(--line)}.s-review{background:#e6d9ff}.s-active{background:var(--gold)}.s-done{background:var(--ok);color:#fff}.s-hold{background:#ddd;color:#555}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0 5px}
+.bar i{display:block;height:100%;background:var(--gold)}
+.meta{font-size:12px;color:var(--mute)}
+.sel{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pick{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;cursor:pointer;font-size:14px;text-align:left}
+.pick[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.pick .ck{color:var(--ok);font-weight:800}.pick[aria-pressed=true] .ck{color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.fld{display:block;margin-bottom:12px}.fld>span{display:block;font-weight:800;font-size:13px;margin-bottom:4px}
+.fld input,.fld textarea,.fld select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+.fld textarea{min-height:100px;resize:vertical}
+.msg{font-size:13px;min-height:20px;margin-top:8px}.msg.err{color:var(--err)}.msg.ok{color:var(--ok)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.ev{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px}
+.ev .d{min-width:74px;text-align:center;background:var(--green);color:var(--ivory);border-radius:12px;padding:8px 6px;height:fit-content}
+.ev .d b{display:block;font-size:22px;color:var(--gold)}
+.ev h3{font-size:17px;margin:4px 0}
+.pre{white-space:pre-wrap;word-break:break-word;font-size:14px}
+.empty{text-align:center;color:var(--mute);padding:56px 0;background:#fff;border:1px dashed var(--line);border-radius:14px}
+dialog{border:none;border-radius:18px;padding:0;width:min(680px,94vw);max-height:90vh;box-shadow:0 30px 80px rgba(18,61,50,.35);color:var(--ink)}
+dialog::backdrop{background:rgba(18,61,50,.55)}
+.dl{padding:24px;overflow:auto;max-height:90vh}.dl h3{font-size:20px;margin-bottom:12px}
+.upd{border-left:3px solid var(--gold);padding:4px 0 4px 12px;margin:10px 0}
+.ck2{display:flex;flex-wrap:wrap;gap:8px}.ck2 label{border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:13px;cursor:pointer}
+footer{background:var(--green);color:rgba(246,241,230,.8);text-align:center;padding:28px 20px;font-size:13px}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--green);color:var(--ivory);padding:12px 20px;border-radius:12px;font-size:14px;z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#home"><i>초</i>초월읍 주민 협의 플랫폼</a>
+<nav class="menu" id="menu"><a href="#home" data-r="home">홈</a><a href="#agendas" data-r="agendas">안건</a><a href="#relay" data-r="relay">민원 릴레이</a><a href="#events" data-r="events">시장과의 활동</a></nav>
+<div class="user" id="userBox"></div>
+</div></header>
+
+<div id="v-home">
+<div class="hero"><div class="grid"></div><div class="blob b1"></div><div class="blob b2"></div>
+<div class="wrap">
+<span class="tag">CHOWOL-EUP RESIDENTS</span>
+<h1>초월읍의 발전,<br><b>주민이 함께 안건을 갱신합니다</b></h1>
+<p>단톡방에서 모인 의견을 안건으로 정리하고, 민원 릴레이로 기관에 전달하고, 시장과의 활동 내용을 기록해 모두에게 공개합니다.</p>
+<div class="cta"><button class="btn p" data-auth="signup">주민 가입하고 참여하기</button><a class="btn g" href="#agendas">안건 보기</a></div>
+<div class="stats"><div class="stat"><small>참여 주민</small><strong id="s1">–</strong></div><div class="stat"><small>안건</small><strong id="s2">–</strong></div><div class="stat"><small>민원 릴레이 접수</small><strong id="s3">–</strong></div><div class="stat"><small>활동 기록</small><strong id="s4">–</strong></div></div>
+</div></div>
+<section class="s"><div class="wrap">
+<h2>참여 방법</h2><p class="sub">단톡방에서 안내받은 가입 코드로 시작합니다.</p>
+<div class="cols">
+<div class="card"><div class="num">1</div><h3>가입</h3><p>단톡방 닉네임, 이메일, 비밀번호와 <b>가입 코드</b>를 입력합니다. 코드는 단톡방 공지에서 확인해 주세요.</p></div>
+<div class="card"><div class="num">2</div><h3>안건 제안·갱신</h3><p>새 안건을 제안하고, 기존 안건에는 새 소식을 덧붙이고, 공감(👍)으로 우선순위를 모읍니다.</p></div>
+<div class="card"><div class="num">3</div><h3>민원 릴레이</h3><p>안건과 기관을 고르면 민원 문안이 만들어집니다. 국민신문고에 접수한 뒤 "접수 완료"를 누르면 전체 집계에 반영됩니다.</p></div>
+<div class="card"><div class="num">4</div><h3>활동 확인</h3><p>시장 면담, 공청회, 서명 등 활동 일정과 결과를 운영진이 기록합니다.</p></div>
+</div>
+<div class="note">안건과 활동 기록은 누구나 볼 수 있습니다. 쓰기와 릴레이 접수는 가입한 주민만 가능합니다. 실명 대신 닉네임을 쓰고, 동·호수와 연락처는 어디에도 적지 마세요.</div>
+</div></section>
+<section class="s" style="padding-top:0"><div class="wrap"><h2>최근 안건</h2><p class="sub">상태와 진행률은 운영진이 갱신합니다.</p><div class="ag" id="homeAg"></div></div></section>
+</div>
+
+<main class="page" id="v-agendas" hidden><div class="wrap"><div class="bh"><div><h2>안건</h2><p class="sub" style="margin:0">주민이 제안하고 갱신하는 초월읍 현안입니다.</p></div><button class="btn p" id="newAg">안건 제안</button></div><div class="tabs" id="agTabs"></div><div class="ag" id="agList"></div></div></main>
+
+<main class="page" id="v-relay" hidden><div class="wrap">
+<h2>민원 릴레이</h2><p class="sub">같은 기관에 같은 안건은 한 사람이 한 번만 접수하세요. 반복하면 반복 민원으로 종결될 수 있습니다.</p>
+<span class="meta">① 안건</span><div class="sel" id="rAg"></div>
+<span class="meta">② 기관 (괄호 안은 전체 접수 수)</span><div class="sel" id="rOrg"></div>
+<div class="grid2">
+<div class="card"><label class="fld"><span>③ 내 상황 한 줄 (필수)</span><textarea id="rLine" maxlength="150" placeholder="예) 초등학생 자녀를 둔 가정이며, 출퇴근 시간마다 도로 정체로 통학 시간이 길어지고 있습니다."></textarea></label><div class="msg err" id="rErr"></div>
+<div class="note" style="margin:0">동·호수, 연락처, 실명은 적지 마세요. 사실과 요청만 차분하게 적어 주세요.</div></div>
+<div class="card"><label class="fld"><span>제목</span><input id="rTitle" readonly></label><label class="fld"><span>내용</span><textarea id="rBody" readonly style="min-height:260px"></textarea></label>
+<div class="btns"><button class="btn p" id="cT">제목 복사</button><button class="btn p" id="cB">내용 복사</button><button class="btn" id="cA">AI로 다듬기용 복사</button></div>
+<div class="btns"><a class="btn s" href="https://www.epeople.go.kr" target="_blank" rel="noopener">국민신문고 열기 ↗</a><button class="btn" id="rMark">접수 완료로 표시</button></div><div class="msg" id="rMsg"></div></div>
+</div>
+<div class="card" style="margin-top:16px"><b>접수 방법</b><ol style="padding-left:20px;margin-top:6px;font-size:14px"><li>국민신문고에 로그인하고 <b>민원신청</b>으로 들어갑니다.</li><li>처리기관 칸에서 위에서 고른 기관명을 검색해 선택합니다.</li><li>제목과 내용을 복사해 붙여 넣고 신청합니다. (일반민원, 비공개 권장)</li><li>돌아와 <b>접수 완료로 표시</b>를 누르면 릴레이 집계에 반영됩니다.</li></ol></div>
+</div></main>
+
+<main class="page" id="v-events" hidden><div class="wrap"><div class="bh"><div><h2>시장과의 활동</h2><p class="sub" style="margin:0">면담, 간담회, 공청회, 서명 등 활동 일정과 결과 기록입니다.</p></div><button class="btn p" id="newEv" hidden>활동 등록</button></div><div id="evList"></div></div></main>
+
+<footer>초월읍 주민 협의 플랫폼 · 주민 자율 운영 사이트이며 행정기관과 무관합니다.</footer>
+<dialog id="dlg"><div class="dl" id="dl"></div></dialog><div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const SB_URL="https://nmmrufzzgxgvgmmejjbq.supabase.co";
+const SB_KEY="sb_publishable_ZPa29Ojuv_t6sIGvonvspg_I4zJM-_K";
+const P="cw_";
+const ORGS=["광주시","초월읍","경기도","기후에너지환경부","한강유역환경청","한국전력공사"];
+const ST={proposed:"제안",review:"검토중",active:"진행중",done:"완료",hold:"보류"};
+const CAT=["발전소","교통","인프라","기타"];
+const KIND={mayor:"시장 면담·간담회",hearing:"공청회·설명회",signature:"서명·캠페인",etc:"기타"};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fd=d=>new Date(d).toLocaleDateString("ko-KR");
+let sb=null,me=null,prof=null,D={ag:[],ev:[],vc:{},rc:{},mv:new Set(),mr:new Set(),stats:null},tab="all",rs={ag:null,org:null};
+const dlg=$("#dlg"),isAdmin=()=>prof?.role==="admin";
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("show"),2800)}
+function openDlg(h){$("#dl").innerHTML=h;if(!dlg.open)dlg.showModal()}
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+function flash(el,t,c){el.textContent=t;el.className="msg "+(c||"");clearTimeout(el._t);el._t=setTimeout(()=>{el.textContent="";el.className="msg"},3500)}
+
+if(!window.supabase){document.body.insertAdjacentHTML("afterbegin",'<div style="background:#c0392b;color:#fff;padding:12px;text-align:center">Supabase 라이브러리를 불러오지 못했습니다. 네트워크를 확인해 주세요.</div>')}
+else{sb=supabase.createClient(SB_URL,SB_KEY);
+  sb.auth.onAuthStateChange((ev,ses)=>{me=ses?.user||null;setTimeout(async()=>{await loadProf();renderUser();load()},0)})}
+async function loadProf(){prof=null;if(!me)return;const{data}=await sb.from(P+"profiles").select("*").eq("id",me.id).maybeSingle();prof=data}
+function renderUser(){const b=$("#userBox");
+  if(me){b.innerHTML='<span>'+esc(prof?.nickname||me.email)+(isAdmin()?' (운영진)':'')+'님</span><button class="btn g sm" id="lo">로그아웃</button>';$("#lo").onclick=async()=>{await sb.auth.signOut();toast("로그아웃했습니다.")}}
+  else b.innerHTML='<button class="btn g sm" data-auth="login">로그인</button><button class="btn p sm" data-auth="signup">가입</button>';
+  $("#newEv").hidden=!isAdmin()}
+document.addEventListener("click",e=>{const a=e.target.closest("[data-auth]");if(a)openAuth(a.dataset.auth)});
+
+/* ===== 데이터 ===== */
+async function load(){
+  if(!sb)return;
+  const q=[sb.from(P+"agendas").select("*").order("created_at",{ascending:false}),sb.from(P+"events").select("*").order("event_date",{ascending:false}),sb.rpc(P+"vote_counts"),sb.rpc(P+"relay_counts"),sb.rpc(P+"stats")];
+  if(me)q.push(sb.from(P+"votes").select("agenda_id"),sb.from(P+"relays").select("agenda_id,agency"));
+  const r=await Promise.all(q);
+  D.ag=r[0].data||[];D.ev=r[1].data||[];
+  D.vc={};(r[2].data||[]).forEach(x=>D.vc[x.agenda_id]=+x.n);
+  D.rc={};(r[3].data||[]).forEach(x=>D.rc[x.agenda_id+"|"+x.agency]=+x.n);
+  D.stats=r[4].data;D.mv=new Set((r[5]?.data||[]).map(x=>x.agenda_id));D.mr=new Set((r[6]?.data||[]).map(x=>x.agenda_id+"|"+x.agency));
+  if(r[0].error)toast("데이터를 불러오지 못했습니다. SQL 설정을 확인해 주세요.");
+  render();
+}
+const relTotal=id=>Object.keys(D.rc).filter(k=>k.startsWith(id+"|")).reduce((n,k)=>n+D.rc[k],0);
+
+/* ===== 라우팅 ===== */
+function route(){const h=location.hash.slice(1),v=["agendas","relay","events"].includes(h)?h:"home";
+  ["home","agendas","relay","events"].forEach(x=>$("#v-"+x).hidden=x!==v);
+  document.querySelectorAll("#menu a").forEach(a=>a.classList.toggle("on",a.dataset.r===v));
+  if(v==="home"&&h){const t=document.getElementById(h);if(t)t.scrollIntoView()}else window.scrollTo(0,0);render()}
+window.addEventListener("hashchange",route);
+
+/* ===== 렌더 ===== */
+function agCard(a){return'<div class="ac" data-id="'+a.id+'"><span class="chip s-'+a.status+'">'+ST[a.status]+'</span><span class="chip">'+esc(a.category)+'</span><h3>'+esc(a.title)+'</h3><p>'+esc(a.summary)+'</p><div class="bar"><i style="width:'+a.progress+'%"></i></div><div class="meta">진행률 '+a.progress+'% · 👍 '+(D.vc[a.id]||0)+' · 릴레이 '+relTotal(a.id)+'건</div></div>'}
+function bind(el){el.querySelectorAll("[data-id]").forEach(n=>n.onclick=()=>openAg(+n.dataset.id))}
+function render(){
+  const st=D.stats||{};[["s1","members"],["s2","agendas"],["s3","relays"],["s4","events"]].forEach(([i,k])=>$("#"+i).textContent=st[k]==null?"–":Number(st[k]).toLocaleString("ko-KR"));
+  const h=$("#homeAg");h.innerHTML=D.ag.slice(0,6).map(agCard).join("")||'<div class="empty" style="grid-column:1/-1">안건을 불러오는 중이거나 아직 없습니다.</div>';bind(h);
+  $("#agTabs").innerHTML=[["all","전체"],...Object.entries(ST)].map(([k,v])=>'<button data-t="'+k+'" class="'+(tab===k?'on':'')+'">'+v+'</button>').join("");
+  $("#agTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+  const l=D.ag.filter(a=>tab==="all"||a.status===tab);$("#agList").innerHTML=l.map(agCard).join("")||'<div class="empty" style="grid-column:1/-1">해당하는 안건이 없습니다.</div>';bind($("#agList"));
+  renderRelay();
+  $("#evList").innerHTML=D.ev.map(e=>{const d=new Date(e.event_date),up=d>new Date(Date.now()-864e5);const ag=D.ag.find(a=>a.id===e.agenda_id);
+    return'<div class="ev"><div class="d"><b>'+(d.getUTCMonth()+1)+'/'+d.getUTCDate()+'</b>'+d.getUTCFullYear()+'</div><div style="flex:1"><span class="chip">'+KIND[e.kind]+'</span><span class="chip '+(up?'s-active':'s-done')+'">'+(up?'예정':'완료')+'</span><h3>'+esc(e.title)+'</h3><div class="meta">'+(e.place?'📍 '+esc(e.place)+' · ':'')+(ag?'안건: '+esc(ag.title):'')+'</div>'+(e.body?'<div class="pre" style="margin-top:8px">'+esc(e.body)+'</div>':'')+(isAdmin()?'<button class="btn sm" style="margin-top:8px" data-del="'+e.id+'">삭제</button>':'')+'</div></div>'}).join("")||'<div class="empty">아직 등록된 활동이 없습니다.</div>';
+  $("#evList").querySelectorAll("[data-del]").forEach(b=>b.onclick=async()=>{if(b.dataset.s!=="1"){b.dataset.s="1";b.textContent="한 번 더 누르면 삭제";return}const{error}=await sb.from(P+"events").delete().eq("id",b.dataset.del);if(error)toast(error.message);else{toast("삭제했습니다.");load()}});
+}
+
+/* ===== 안건 상세 ===== */
+async function openAg(id){
+  const a=D.ag.find(x=>x.id===id);if(!a)return;
+  const{data:ups}=await sb.from(P+"updates").select("*").eq("agenda_id",id).order("created_at",{ascending:false});
+  const org=(a.agencies||[]).map(o=>esc(o)+' '+(D.rc[id+"|"+o]||0)).join(' · ');
+  openDlg('<span class="chip s-'+a.status+'">'+ST[a.status]+'</span><span class="chip">'+esc(a.category)+'</span><h3 style="margin-top:8px">'+esc(a.title)+'</h3><div class="meta">제안: '+esc(a.author_name||"운영진")+' · '+fd(a.created_at)+' · 갱신 '+fd(a.updated_at)+'</div>'
+  +'<div class="bar"><i style="width:'+a.progress+'%"></i></div><div class="meta">진행률 '+a.progress+'%</div><div class="pre" style="margin:12px 0">'+esc(a.summary)+'</div>'
+  +(a.asks?'<b>요청 사항</b><div class="pre" style="margin:4px 0 12px">'+esc(a.asks)+'</div>':'')
+  +'<div class="meta" style="margin-bottom:12px">릴레이 접수: '+(org||'대상 기관 없음')+'</div>'
+  +'<div class="btns" style="margin:0 0 14px"><button class="btn" id="vt">'+(D.mv.has(id)?'👍 공감 취소':'👍 공감')+' ('+(D.vc[id]||0)+')</button><a class="btn s" href="#relay" id="gr">민원 릴레이 참여</a></div>'
+  +(isAdmin()?'<div class="card" style="padding:14px;margin-bottom:14px"><b>운영진 설정</b><div class="btns"><select id="aSt">'+Object.entries(ST).map(([k,v])=>'<option value="'+k+'"'+(k===a.status?' selected':'')+'>'+v+'</option>').join("")+'</select><input id="aPr" type="number" min="0" max="100" value="'+a.progress+'" style="width:90px;padding:8px;border:1px solid var(--line);border-radius:10px"><button class="btn p sm" id="aSave">저장</button><button class="btn sm" id="aDel">안건 삭제</button></div></div>':'')
+  +'<h3 style="font-size:17px">갱신 기록</h3><div id="ups">'+((ups||[]).map(u=>'<div class="upd"><div class="meta">'+esc(u.author_name)+' · '+fd(u.created_at)+(me&&(u.author_id===me.id||isAdmin())?' · <a href="#" data-ud="'+u.id+'">삭제</a>':'')+'</div><div class="pre">'+esc(u.body)+'</div></div>').join("")||'<div class="meta">아직 갱신 기록이 없습니다.</div>')+'</div>'
+  +(me?'<label class="fld" style="margin-top:12px"><span>새 소식 덧붙이기</span><textarea id="uBody" maxlength="1000" placeholder="회신 내용, 면담 결과, 새 자료 등을 적어 주세요."></textarea></label><div class="btns"><button class="btn p" id="uAdd">갱신 등록</button><button class="btn" id="cl">닫기</button></div>':'<div class="btns"><button class="btn s" data-auth="login">로그인하고 갱신하기</button><button class="btn" id="cl">닫기</button></div>')+'<div class="msg" id="dm"></div>');
+  $("#cl").onclick=()=>dlg.close();$("#gr").onclick=()=>{rs.ag=id;dlg.close()};
+  $("#vt").onclick=async()=>{if(!me)return openAuth("login");const on=D.mv.has(id);const{error}=on?await sb.from(P+"votes").delete().eq("agenda_id",id):await sb.from(P+"votes").insert({agenda_id:id});if(error)return toast(error.message);await load();openAg(id)};
+  if(me)$("#uAdd").onclick=async()=>{const b=$("#uBody").value.trim();if(!b)return flash($("#dm"),"내용을 적어 주세요.","err");const{error}=await sb.from(P+"updates").insert({agenda_id:id,body:b});if(error)return flash($("#dm"),error.message,"err");toast("갱신했습니다.");openAg(id)};
+  dlg.querySelectorAll("[data-ud]").forEach(x=>x.onclick=async e=>{e.preventDefault();await sb.from(P+"updates").delete().eq("id",x.dataset.ud);openAg(id)});
+  if(isAdmin()){$("#aSave").onclick=async()=>{const{error}=await sb.from(P+"agendas").update({status:$("#aSt").value,progress:Math.min(100,Math.max(0,+$("#aPr").value||0))}).eq("id",id);if(error)return flash($("#dm"),error.message,"err");toast("저장했습니다.");await load();openAg(id)};
+    let s=false;$("#aDel").onclick=async()=>{if(!s){s=true;$("#aDel").textContent="한 번 더 누르면 삭제";return}const{error}=await sb.from(P+"agendas").delete().eq("id",id);if(error)return flash($("#dm"),error.message,"err");dlg.close();toast("삭제했습니다.");load()}}
+}
+$("#newAg").onclick=()=>{if(!me)return openAuth("login");
+  openDlg('<h3>안건 제안</h3><form id="nf"><label class="fld"><span>제목</span><input name="title" required maxlength="120"></label><label class="fld"><span>분류</span><select name="cat">'+CAT.map(c=>'<option>'+c+'</option>').join("")+'</select></label><label class="fld"><span>설명 (배경·필요성)</span><textarea name="summary" required maxlength="3000"></textarea></label><label class="fld"><span>기관에 요청할 사항 (한 줄에 하나씩)</span><textarea name="asks" maxlength="2000" placeholder="예) 정체 구간 실태조사 결과 공개"></textarea></label><span style="font-weight:800;font-size:13px">릴레이 대상 기관</span><div class="ck2" style="margin:6px 0 12px">'+ORGS.map(o=>'<label><input type="checkbox" name="ag" value="'+o+'"'+(o==="광주시"||o==="초월읍"?' checked':'')+'> '+o+'</label>').join("")+'</div><div class="msg err" id="ne"></div><div class="btns"><button type="button" class="btn" id="nc">취소</button><button class="btn p">제안하기</button></div></form>');
+  $("#nc").onclick=()=>dlg.close();
+  $("#nf").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const{error}=await sb.from(P+"agendas").insert({title:f.get("title").trim(),category:f.get("cat"),summary:f.get("summary").trim(),asks:(f.get("asks")||"").trim(),agencies:f.getAll("ag")});if(error)return $("#ne").textContent="등록하지 못했습니다: "+error.message;dlg.close();toast("안건을 제안했습니다. 운영진이 검토합니다.");load()}};
+
+/* ===== 민원 릴레이 ===== */
+function renderRelay(){
+  const ags=D.ag.filter(a=>(a.agencies||[]).length);
+  if(!rs.ag||!ags.find(a=>a.id===rs.ag))rs.ag=ags[0]?.id||null;
+  const a=ags.find(x=>x.id===rs.ag);
+  $("#rAg").innerHTML=ags.map(x=>'<button class="pick" data-a="'+x.id+'" aria-pressed="'+(x.id===rs.ag)+'">'+esc(x.title)+'</button>').join("")||'<span class="meta">안건이 없습니다.</span>';
+  $("#rAg").querySelectorAll("button").forEach(b=>b.onclick=()=>{rs.ag=+b.dataset.a;rs.org=null;renderRelay()});
+  if(!a){$("#rOrg").innerHTML="";return}
+  if(!a.agencies.includes(rs.org))rs.org=a.agencies[0];
+  $("#rOrg").innerHTML=a.agencies.map(o=>'<button class="pick" data-o="'+esc(o)+'" aria-pressed="'+(o===rs.org)+'">'+esc(o)+' ('+(D.rc[a.id+"|"+o]||0)+')'+(D.mr.has(a.id+"|"+o)?' <span class="ck">✓</span>':'')+'</button>').join("");
+  $("#rOrg").querySelectorAll("button").forEach(b=>b.onclick=()=>{rs.org=b.dataset.o;renderRelay()});
+  buildRelay();
+}
+function relayText(){const a=D.ag.find(x=>x.id===rs.ag),line=$("#rLine").value.trim();
+  const asks=(a.asks||"").split("\n").map(s=>s.trim()).filter(Boolean);
+  const title="[초월읍민원] "+a.title+" 관련 요청 ("+rs.org+")";
+  const body=["1. 현황","- 초월읍 주민으로서 「"+a.title+"」과 관련하여 아래와 같이 문의·요청드립니다.","- 신청인 세대 상황 : "+line,"","2. 요청 사항",...(asks.length?asks:["이 안건에 대한 검토 결과와 추진 계획"]).map((s,i)=>"("+(i+1)+") "+s),"","3. 회신 요청","- 위 사항에 대한 검토 결과와 근거(관련 계획·일정 포함)를 서면으로 회신해 주시기 바랍니다.","- 귀 기관의 소관이 아닌 경우 소관 기관으로 이송하고 그 사실을 알려 주시기 바랍니다."].join("\n");
+  return{title,body}}
+function lineErr(){const v=$("#rLine").value.trim();if(v.length<10)return"내 상황을 10자 이상 적어 주세요.";
+  if(/\d{2,4}\s*동|\d{2,4}\s*호|01[016789][-\s]?\d{3,4}[-\s]?\d{4}|\d{2,3}-\d{3,4}-\d{4}/.test(v))return"동·호수나 연락처로 보이는 내용이 있습니다. 지워 주세요.";return""}
+function buildRelay(){const a=D.ag.find(x=>x.id===rs.ag);if(!a)return;const err=lineErr(),t=relayText();
+  $("#rErr").textContent=$("#rLine").value.trim()?err:"";$("#rTitle").value=t.title;$("#rBody").value=err?"(내 상황 한 줄을 적으면 문안이 완성됩니다)":t.body;
+  ["cT","cB","cA"].forEach(i=>$("#"+i).disabled=!!err);
+  const done=D.mr.has(rs.ag+"|"+rs.org);$("#rMark").textContent=done?"접수 완료 표시 해제":"접수 완료로 표시"}
+async function cp(text,label){let ok=false;try{await navigator.clipboard.writeText(text);ok=true}catch(e){try{const t=document.createElement("textarea");t.value=text;t.style.cssText="position:fixed;opacity:0";document.body.appendChild(t);t.select();ok=document.execCommand("copy");t.remove()}catch(e2){}}
+  flash($("#rMsg"),ok?label+" 복사 완료. 국민신문고에 붙여 넣으세요.":"복사가 막혀 있습니다. 칸을 길게 눌러 직접 복사해 주세요.",ok?"ok":"err")}
+$("#rLine").addEventListener("input",buildRelay);
+$("#cT").onclick=()=>cp(relayText().title,"제목");$("#cB").onclick=()=>cp(relayText().body,"내용");
+$("#cA").onclick=()=>{const t=relayText();cp("아래 민원 문안을 내 말투로 다듬어 주세요. 숫자·날짜·기관명·요청 사항은 그대로 두고, 없는 사실은 지어내지 마세요. 표현과 문장 순서만 바꾸고, 비난이나 감정적인 표현은 넣지 마세요.\n\n[제목]\n"+t.title+"\n\n[내용]\n"+t.body,"AI 지시문과 문안")};
+$("#rMark").onclick=async()=>{if(!me)return openAuth("login");const k=rs.ag+"|"+rs.org,on=D.mr.has(k);
+  const{error}=on?await sb.from(P+"relays").delete().eq("agenda_id",rs.ag).eq("agency",rs.org):await sb.from(P+"relays").insert({agenda_id:rs.ag,agency:rs.org});
+  if(error)return flash($("#rMsg"),"처리하지 못했습니다: "+error.message,"err");await load();flash($("#rMsg"),on?"표시를 해제했습니다.":"접수 완료로 집계되었습니다. 감사합니다!","ok")};
+
+/* ===== 활동 등록 (운영진) ===== */
+$("#newEv").onclick=()=>{openDlg('<h3>활동 등록</h3><form id="ef"><label class="fld"><span>제목</span><input name="title" required maxlength="120"></label><label class="fld"><span>종류</span><select name="kind">'+Object.entries(KIND).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join("")+'</select></label><label class="fld"><span>날짜</span><input type="date" name="date" required></label><label class="fld"><span>장소</span><input name="place" maxlength="80"></label><label class="fld"><span>관련 안건 (선택)</span><select name="ag"><option value="">없음</option>'+D.ag.map(a=>'<option value="'+a.id+'">'+esc(a.title)+'</option>').join("")+'</select></label><label class="fld"><span>내용·결과</span><textarea name="body" maxlength="5000"></textarea></label><div class="msg err" id="ee"></div><div class="btns"><button type="button" class="btn" id="ec">취소</button><button class="btn p">등록</button></div></form>');
+  $("#ec").onclick=()=>dlg.close();
+  $("#ef").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const{error}=await sb.from(P+"events").insert({title:f.get("title").trim(),kind:f.get("kind"),event_date:f.get("date"),place:f.get("place").trim(),body:f.get("body").trim(),agenda_id:f.get("ag")?+f.get("ag"):null});if(error)return $("#ee").textContent=error.message;dlg.close();toast("등록했습니다.");load()}};
+
+/* ===== 인증 ===== */
+function openAuth(tab){const su=tab==="signup";
+  openDlg('<h3>'+(su?'주민 가입':'로그인')+'</h3><div class="tabs"><button data-t="login" class="'+(su?'':'on')+'">로그인</button><button data-t="signup" class="'+(su?'on':'')+'">가입</button></div><form id="af">'
+  +(su?'<label class="fld"><span>닉네임 (단톡방 닉네임 가능, 실명 불필요)</span><input name="nick" required maxlength="20"></label>':'')
+  +'<label class="fld"><span>이메일</span><input name="email" type="email" required autocomplete="email"></label><label class="fld"><span>비밀번호'+(su?' (6자 이상)':'')+'</span><input name="pw" type="password" required minlength="6" autocomplete="'+(su?'new-password':'current-password')+'"></label>'
+  +(su?'<label class="fld"><span>가입 코드 (단톡방 공지 확인)</span><input name="code" required></label>':'')
+  +'<div class="msg err" id="ae"></div><button class="btn s" style="width:100%;justify-content:center" id="as">'+(su?'가입하기':'로그인')+'</button></form>');
+  dlg.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>openAuth(b.dataset.t));
+  $("#af").onsubmit=async ev=>{ev.preventDefault();const f=new FormData(ev.target),btn=$("#as"),er=$("#ae");er.className="msg err";er.textContent="";btn.disabled=true;
+    try{const email=f.get("email").trim(),pw=f.get("pw");
+      if(su){const{data,error}=await sb.auth.signUp({email,password:pw,options:{data:{site:"cw",nickname:f.get("nick").trim(),code:f.get("code").trim()}}});if(error)throw error;
+        if(!data.session){er.className="msg ok";er.textContent="가입 완료. 메일함의 인증 링크를 누른 뒤 로그인해 주세요.";return}dlg.close();toast("환영합니다!")}
+      else{const{error}=await sb.auth.signInWithPassword({email,password:pw});if(error)throw error;dlg.close();toast("로그인했습니다.")}
+    }catch(e){er.textContent=authMsg(e)}finally{btn.disabled=false}}}
+function authMsg(e){const m=e.message||"";
+  if(/Invalid login/i.test(m))return"이메일 또는 비밀번호가 올바르지 않습니다.";
+  if(/not confirmed/i.test(m))return"이메일 인증이 필요합니다. 메일함을 확인해 주세요.";
+  if(/already registered/i.test(m))return"이미 가입된 이메일입니다. (다른 사이트에서 쓴 이메일은 다른 주소로 가입해 주세요)";
+  if(/Database error|INVALID_SIGNUP_CODE/i.test(m))return"가입 코드가 올바르지 않습니다.";
+  if(/at least 6|weak/i.test(m))return"비밀번호는 6자 이상이어야 합니다.";
+  if(/rate limit|security purposes/i.test(m))return"요청이 많습니다. 잠시 후 다시 시도해 주세요.";
+  return"처리하지 못했습니다: "+m}
+
+renderUser();route();if(sb)load();
+</script>
+</body>
+</html>
